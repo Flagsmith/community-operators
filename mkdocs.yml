@@ -14,14 +14,16 @@ nav:
       - 'Prerequisites' : contributing-prerequisites.md
       - 'Where to place operator': contributing-where-to.md
       - 'Creating pull request (PR)' : contributing-via-pr.md
+      - 'Operator Publishing / Review settings' : operator-ci-yaml.md
       - 'Tests in PR explained' : tests-in-pr.md
-      - 'Updating existing Operators' : operator-versioning.md
+      - 'Updating existing Operators' : operator-version-update.md
       - 'Updating published Operator version' : operator-overwrite.md
+      - 'How do i deploy operator faster?' : self-merge-updates.md
     - 'Release process' : operator-release-process.md
     - 'Github Action' : action.md
     - 'Best practices' : best-practices.md
     - 'Troubleshooting' : troubleshooting.md
-
+    - 'Statistics' : stats.md
 theme:
   name: material
   features:
@@ -48,5 +50,6 @@ markdown_extensions:
   - footnotes
   - meta
   - pymdownx.tabbed
+  - attr_list
   - toc:
       toc_depth: 2

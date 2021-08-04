@@ -27,6 +27,8 @@ If you have an existing Operator read our [contribution guidelines](./packaging-
 
 ## Test your Operator before submitting a PR
 
+**IMPORTANT** Kubernetes has been deprecating API(s), which will be removed and no longer available in `1.22` and in the Openshift version `4.9`. Note that your project will be unable to use them on `OCP 4.9/K8s 1.22`. Then, it is strongly recommended to check [Deprecated API Migration Guide from v1.22](https://kubernetes.io/docs/reference/using-api/deprecation-guide/#v1-22) and ensure that your projects have them migrated and are not using any deprecated API. If you are looking to distribute your solution on OKD/Openshift catalogs see [OKD/OpenShift Catalogs criteria and options](./packaging-required-criteria-ocp.md).
+
 You can use our [test suite](./operator-test-suite.md) to test your Operator prior to submitting it. Our [test suite](./operator-test-suite.md) will help you to install it. Then assuming you followed the contribution guide, you can run the entire suite on a Linux or macOS system with `Docker` installed:
 
 ```bash
@@ -37,6 +39,16 @@ bash <(curl -sL https://cutt.ly/WhkV76k) \
 ```
 Tests are not passing or you want to know more? Check [test suite](./operator-test-suite.md) for more info.
 
+### Validating the bundle with SDK
+
+Note that you can validate the bundle via [`operator-sdk bundle validate`][sdk-cli-bundle-validate] against the entire suite of validators for Operator Framework, in addition to required bundle validators:
+
+```sh
+operator-sdk bundle validate ./bundle --select-optional suite=operatorframework
+```
+
+**Note** If you used [operator-sdk](https://github.com/operator-framework/operator-sdk) to build your project and to build your bundle with the target `make bundle` then you can leverage in [`operator-sdk scorecard`][sdk-cli-scorecard-bundle] to perform functional tests as well.
+
 ## Preview your Operator on OperatorHub.io
 
 You can preview how your Operator would be rendered there by using the [preview tool](https://operatorhub.io/preview). If you are submitting your Operator in the `upstream-community-operators` directory your Operator will appear on OperatorHub.io.
@@ -44,11 +56,11 @@ You can preview how your Operator would be rendered there by using the [preview 
 ## Submitting your PR
 
 Review this [checklist](./pull_request_template.md) upon creating a PR and after you acknowledged the contribution guidelines.
-Do not forget to add [ci.yaml](./operator-versioning.md) to the top level of your operator. Otherwise only `semver` mode will be supported.
+Do not forget to add [ci.yaml](./operator-ci-yaml.md#operator-versioning) to the top level of your operator. Otherwise only `semver` mode will be supported.
 
 ## Update your Operator
 
-Similarly, to update your operator you need to submit a PR with any changes to your Operator resources. Refer to our [contribution guide](./operator-versioning.md) for more details.
+Similarly, to update your operator you need to submit a PR with any changes to your Operator resources. Refer to our [contribution guide](./operator-ci-yaml.md#operator-versioning) for more details.
 
 ## CI Tests your Operator
 

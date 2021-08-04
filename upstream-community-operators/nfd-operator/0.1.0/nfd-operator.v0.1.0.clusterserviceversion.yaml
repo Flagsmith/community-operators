@@ -190,7 +190,7 @@ spec:
     type: MultiNamespace
   - supported: true
     type: AllNamespaces
-  maturity: stable
+  maturity: alpha
   provider:
     name: "Red Hat"
   version: "0.1.0"
